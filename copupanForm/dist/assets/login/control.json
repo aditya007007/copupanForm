@@ -1,0 +1,92 @@
+{
+    "signUpForm":{
+      "details":"Create an account and explore <br> No Card Details Required",
+      "isCaptchaRequired":true,
+      "controls":[
+         {
+         "id":"email",
+         "type":"email",
+         "label":"Email",
+         "regex":"^[a-z0-9]+(\\.[_a-z0-9]+)*@[a-z0-9-]+(\\.[a-z0-9-]+)*(\\.[a-z]{2,15})$",
+         "key":"",
+         "maxLength":"",
+         "minLength":"",
+         "placeHolder":"Please provide your Email ID",
+         "sequence": "",
+         "controlType":"2",
+         "isAPIToCheck": true,
+         "isMandatory":true
+      },{
+         "id":"userName",
+         "type":"text",
+         "label":"Profile Name",
+         "regex":"",
+         "maxLength":"",
+         "minLength":"",
+         "placeHolder":"Please provide your profile name",
+         "orderBy": "",
+         "controlType":"4",
+         "isAPIToCheck": true,
+         "isMandatory":true
+      },
+      {
+         "id":"mobileNumber",
+         "type":"number",
+         "label":"Mobile Number",
+         "regex":"^[0-9]{10}$",
+         "maxLength":"10",
+         "minLength":"10",
+         "placeHolder":"Please provide your Mobile Number",
+         "orderBy": "",
+         "controlType":"1",
+         "isAPIToCheck": true,
+         "isMandatory":true,
+         "showHint": false
+      },
+      {
+         "id":"organisationName",
+         "type":"text",
+         "label":"Account Name",
+         "regex":"",
+         "maxLength":"",
+         "minLength":"",
+         "placeHolder":"Please provide your Account Name",
+         "orderBy": "",
+         "controlType":"",
+         "isAPIToCheck": false,
+         "isMandatory":true,
+         "showHint": false
+      },
+      {
+         "id":"password",
+         "type":"password",
+         "label":"Password",
+         "regex":"^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{9,16}$",
+         "maxLength":"",
+         "minLength":"",
+         "placeHolder":"*********",
+         "orderBy": "",
+         "controlType":"",
+         "isAPIToCheck": false,
+         "isMandatory":true,
+         "showHint": true
+      },
+      {
+         "id":"confirmPassword",
+         "type":"password",
+         "label":"Confirm Password",
+         "regex":"",
+         "maxLength":"",
+         "minLength":"",
+         "placeHolder":"*********",
+         "orderBy": "",
+         "controlType":"",
+         "isAPIToCheck": false,
+         "isMandatory":true,
+         "showHint": false
+
+      }
+      ]
+    },
+    "loginForm":{}
+  }

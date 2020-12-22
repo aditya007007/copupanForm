@@ -1,0 +1,99 @@
+.mat-error{
+    font-size: 12px;
+    margin-top: -16px;
+    font-style: italic;
+}
+.mat-form-field{
+    margin-top: -2px;
+    float: left;
+    width: 100%;
+}
+.rulesArray{
+    margin-top: 50px;
+}
+div.valid_from{
+    float: left;
+    margin-right: 2%;
+}
+.header{
+position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 9;
+  background-color: #4b8ee4;
+  padding: 0 12px 0 12px ;
+  color: #fff;
+}
+.header img{
+    width: 50px;
+}
+.body-container{
+        background: url("../assets/data/images/bg.jpg") no-repeat center;
+        background-size: cover;
+        min-height: 100%;
+}
+.body-child-continer{
+    background: white;
+    border-radius: 2px solid grey;
+    border: 1px solid grey;
+    border-radius: 12px;
+    margin-top: 20px;
+    overflow: scroll;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+}
+.body-child-continer::-webkit-scrollbar {
+  display: none;
+}
+.infoText{
+    color: grey;
+    text-align: center;
+    font-size: 17px;
+    text-align: center;
+    text-transform: uppercase;
+
+}
+
+.divInfo{
+    margin-top: 12px;
+    border-bottom: 2px solid grey;
+    margin-bottom: 30px;
+}
+div.min_amount,.discount_type{
+    float: left;
+    margin-right: 6%;
+}
+.ruleArrayControl{
+    padding: 0 4px;
+}
+.ruleArray{
+    border: 1px solid grey;
+    border-radius: 1px;
+    margin-top: 20px;
+}
+.ruleHeader{
+    height: 45px;
+}
+.coupanrules.divInfo{
+    padding-top: 25px;
+    border-bottom: 2px solid grey;
+    color: grey;
+    margin-bottom: 20px;
+}
+.coupanrules.divInfo .infoText{
+    color: grey;
+    text-align: center;
+    font-size: 20px;
+    text-align: center;
+}
+.remove-rule,.add-rule{
+    text-align: right;
+    padding: 0px 8px 10px 5px;
+}
+.add-rule{
+    padding-top: 4px;
+}
+.add-rule span{
+    line-height: 39px;
+    text-indent: 7px;
+}

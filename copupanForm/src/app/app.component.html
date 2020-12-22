@@ -1,0 +1,159 @@
+<mat-toolbar class="header">
+    <img src="./../assets/data/images/logo.jpg" alt="">
+    <span>COUPAN KING</span>
+</mat-toolbar>
+<div fxLayout fxLayoutAlign="center" class="body-container" *ngIf="iForm!== undefined">
+    <div fxFlex="40%" class="body-child-continer">
+        <form fxLayoutAlign="center" [formGroup]="coupanForm" (ngSubmit)="submit()" autocomplete="off">
+            <div >
+                <div *ngIf="getFormData() | async">
+                    <div class="divInfo">
+                        <span class="infoText" [innerHTML]="iForm.details"></span>
+                    </div>
+                    <div fxLayout="row">
+                        <div id="coupanForm">
+                            <div fxLayout fxLayout="row wrap" class="coupanForm" *ngFor="let control of iForm.controls"
+                                [fxFlex]="control.width" [ngClass]="control.id">
+                                <mat-form-field class="mat-form-field"
+                                    *ngIf="control.defaultVisibility && control.type =='select'">
+                                    <mat-label class="label">{{control.label}}<sup *ngIf="control.isMandatory">*</sup>
+                                    </mat-label>
+                                    <mat-select [formControlName]="control.id"
+                                        (ngModelChange)="childVisibility($event,control,'control')">
+                                        <mat-option value="">{{control.placeHolder}}</mat-option>
+                                        <mat-option *ngFor="let option of control.options" [value]="option.value">
+                                            {{option.name}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                                <mat-form-field class="mat-form-field"
+                                    *ngIf="control.defaultVisibility && (control.type == 'text' || control.type == 'number')"
+                                    appearance="legacy">
+                                    <mat-label class="label">{{control.label}}<sup *ngIf="control.isMandatory">*</sup>
+                                    </mat-label>
+                                    <input matInput [id]="control.id" [placeholder]="control.placeHolder"
+                                        [type]="control?.type" [formControlName]="control.id" autocomplete="off"
+                                        [value]="control.value">
+                                </mat-form-field>
+                                <mat-form-field class="mat-form-field"
+                                    *ngIf="control.defaultVisibility && control.type == 'date'" appearance="legacy"
+                                    class="otp-bx">
+                                    <mat-label class="label">{{control.label}}<sup *ngIf="control.isMandatory">*</sup>
+                                    </mat-label>
+                                    <input matInput [id]="control.id" [placeholder]="control.placeHolder"
+                                        [formControlName]="control.id" autocomplete="off" matInput
+                                        [matDatepicker]="picker" (click)="picker.open()" readonly>
+                                    <mat-datepicker-toggle matSuffix [for]="picker">
+                                    </mat-datepicker-toggle>
+                                    <mat-datepicker #picker></mat-datepicker>
+                                </mat-form-field>
+                                <div class="mat-form-field quill-editor"
+                                    *ngIf="control.defaultVisibility && control.type =='remarks'">
+                                    <quill-editor 
+                                        [placeholder]="control.placeHolder" [formControlName]="control.id">
+                                    </quill-editor>
+                                </div>
+                                <mat-error *ngIf="(coupanForm.controls[control.id].hasError('regex'))"
+                                    class="mat-error">
+                                    {{control.label}} should be 0 to 100
+                                </mat-error>
+                                <mat-error fxFlex="100%" fxLayout fxLayout="row wrap"
+                                    *ngIf="(coupanForm.controls[control.id].hasError('minlength'))" class="mat-error">
+                                    {{control.label}} should be minimum of {{control.minLength}} character long
+                                </mat-error>
+                                <mat-error fxFlex="100%" fxLayout fxLayout="row wrap" style="color:red;"
+                                    *ngIf="(coupanForm.controls[control.id].hasError('required')) &&  (coupanForm.controls[control.id].dirty)"
+                                    class="mat-error">
+                                    {{control.label}} is mandatory
+                                </mat-error>
+                                <mat-error fxFlex="100%" fxLayout fxLayout="row wrap" style="color:red;"
+                                    *ngIf="(coupanForm.controls[control.id].hasError('duplicate')) &&  (coupanForm.controls[control.id].dirty)"
+                                    class="mat-error">
+                                    {{emailErrorMessage}}. Please choose different {{control.label}}
+                                </mat-error>
+                            </div>
+                        </div>
+                    </div>
+                    <div formArrayName="rules" class="rulesArray">
+                        <div class="divInfo coupanrules">
+                            <span class="infoText">COUPON RULES</span>
+                        </div>
+                        <div *ngFor="let coupanArray of rules.controls; let i=index" class="ruleArray">
+                            <mat-toolbar class="ruleHeader">
+                                RULE{{i+1}}
+                            </mat-toolbar>
+                            <div [formGroupName]="i">
+                                <div fxLayout fxLayout="row wrap" *ngFor="let control of iForm.rules; let k=index"
+                                    [fxFlex]="control.width" [ngClass]="control.id" class="ruleArrayControl">
+                                    <mat-form-field *ngIf="control.defaultVisibility && control.type =='select'">
+                                        <mat-label class="label">{{control.label}}<sup
+                                                *ngIf="control.isMandatory">*</sup>
+                                        </mat-label>
+                                        <mat-select [formControlName]="control.id">
+                                            <mat-option value="">{{control.placeHolder}}</mat-option>
+                                            <mat-option *ngFor="let option of control.options" [value]="option.value">
+                                                {{option.name}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                    <mat-form-field
+                                        *ngIf="control.defaultVisibility && (control.type == 'text' || control.type == 'number')"
+                                        appearance="legacy">
+                                        <mat-label class="label">{{control.label}}<sup
+                                                *ngIf="control.isMandatory">*</sup>
+                                        </mat-label>
+                                        <input matInput [id]="control.id" [placeholder]="control.placeHolder"
+                                            [type]="control?.type" [formControlName]="control.id" autocomplete="off"
+                                            [value]="control.value">
+                                    </mat-form-field>
+                                    <mat-form-field *ngIf="control.defaultVisibility && control.type == 'date'"
+                                        appearance="legacy" class="otp-bx">
+                                        <mat-label class="label">{{control.label}}<sup
+                                                *ngIf="control.isMandatory">*</sup>
+                                        </mat-label>
+                                        <input matInput [id]="control.id" [placeholder]="control.placeHolder"
+                                            [formControlName]="control.id" autocomplete="off" matInput
+                                            [matDatepicker]="picker" (click)="picker.open()" readonly>
+                                        <mat-datepicker-toggle matSuffix [for]="picker">
+                                        </mat-datepicker-toggle>
+                                        <mat-datepicker #picker></mat-datepicker>
+                                    </mat-form-field>
+                                    <mat-error *ngIf="(coupanArray.controls[control.id].hasError('regex'))"
+                                        class="mat-error">
+                                        {{control.label}} should be 0 to 100
+                                    </mat-error>
+                                    <mat-error *ngIf="(coupanArray.controls[control.id].hasError('minlength'))"
+                                        class="mat-error">
+                                        {{control.label}} should be minimum of {{control.minLength}} character long
+                                    </mat-error>
+                                    <mat-error style="color:red;"
+                                        *ngIf="(coupanArray.controls[control.id].hasError('required')) &&  (coupanArray.controls[control.id].dirty)"
+                                        class="mat-error">
+                                        {{control.label}} is mandatory
+                                    </mat-error>
+                                    <mat-error style="color:red;"
+                                        *ngIf="(coupanArray.controls[control.id].hasError('duplicate')) &&  (coupanArray.controls[control.id].dirty)"
+                                        class="mat-error">
+                                        {{emailErrorMessage}}. Please choose different {{control.label}}
+                                    </mat-error>
+                                </div>
+                            </div>
+                            <div class="remove-rule" *ngIf="i > 0">
+                                <button type="button" mat-mini-fab color="warn" (click)="removeRule(i)">X</button>
+                                <span>Remove</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div fxLayout class="add-rule">
+                        <button type="button" mat-mini-fab color="primary" (click)="addRule()">+</button>
+                        <span>Add more</span>
+                    </div>
+                    <div fxLayout>
+                        <button type="submit" [disabled]="coupanForm.invalid" mat-raised-button
+                            color="primary">Save</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

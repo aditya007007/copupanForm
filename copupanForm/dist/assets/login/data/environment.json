@@ -1,0 +1,13 @@
+{
+  "envConfig":{
+    "envProps": {
+      "appId": "PORTAL",
+      "appVersion": "1.0",
+      "baseUrl": "https://dev-web.vahanacloud.com/router/engine/v1",
+      "orgId": "VAHANA",
+      "platform": "WEB",
+      "secureKey": "3f76d1bb-8bf8-4aef-b79b-1e5d9b0bd007",
+      "securityVersion": "2"
+    }
+}
+}

@@ -1,0 +1,11 @@
+<h1 mat-dialog-title>
+  <mat-toolbar class="header">
+    <span>COUPAN OUTPUT JSON</span>
+  </mat-toolbar>
+</h1>
+<div mat-dialog-content>
+  <pre>{{data.data | json}}</pre>
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button color="primary" [mat-dialog-close]="data.type" cdkFocusInitial>Ok</button>
+</div>
