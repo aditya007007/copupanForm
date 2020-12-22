@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
-import { IForm, IControl, IFormDetail } from '../authentication/controlnterface/control.interface';
+import { IForm, IControl } from '../shared/controlnterface/control.interface';
 import { delay, map } from 'rxjs/operators';
 import { BehaviorSubject, Observable } from 'rxjs';
 
@@ -66,7 +66,7 @@ export class ControlService {
   public getFormAPIData(): Observable<IForm> {
     this.formDetail = new BehaviorSubject<IForm>(null);
     const timeStamp = new Date().getTime();
-    this.http.get(`/assets/data/control.json?${timeStamp}`).pipe(delay(2)).subscribe((resp: any) => {
+    this.http.get(`/assetsDetails/data/control.json?${timeStamp}`).pipe(delay(2)).subscribe((resp: any) => {
       this.iForm = resp;
       this.formDetail.next(this.iForm);
     });

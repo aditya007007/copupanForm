@@ -7,7 +7,7 @@ import {
   Validators
 } from '@angular/forms';
 import { ControlService } from './../app/shared/control.service';
-import { IFormDetail, IControl, IForm } from '../../src/app/authentication/controlnterface/control.interface';
+import { IFormDetail, IControl, IForm } from '../app/shared/controlnterface/control.interface';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DialougeComponent } from '../../src/app/shared/dialouge/dialouge.component'
